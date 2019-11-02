@@ -8,7 +8,7 @@ namespace DMData.Stats
 {
     public interface IRace
     {
-        IReadOnlyList<Movement> MovementList { get; }
+        IReadOnlyList<MovementInfo> MovementList { get; }
         IReadOnlyList<LangaugeInfo> LanguageList { get; }
         IReadOnlyList<AbilityAdjustment> AbilityAdjustmentList { get; }
 

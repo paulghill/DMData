@@ -391,12 +391,12 @@ namespace DMData.Stats
             return !(left == right);
         }
     }
-    public struct Movement : IEquatable<Movement>
+    public struct MovementInfo : IEquatable<MovementInfo>
     {
         public MovementCategoryType Category { get; private set; }
         public int Speed { get; private set; }
 
-        public Movement(MovementCategoryType category, int speed)
+        public MovementInfo(MovementCategoryType category, int speed)
         {
             this.Category = category;
             this.Speed = speed;
@@ -431,9 +431,9 @@ namespace DMData.Stats
         public override bool Equals(object obj)
         {
             if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
-            else { return this.Equals((Movement)obj); }
+            else { return this.Equals((MovementInfo)obj); }
         }
-        public bool Equals(Movement other)
+        public bool Equals(MovementInfo other)
         {
             return (this.Category == other.Category) && (this.Speed == this.Speed);
         }
@@ -443,11 +443,11 @@ namespace DMData.Stats
             return Tuple.Create(this.Category, this.Speed).GetHashCode();
         }
 
-        public static bool operator ==(Movement left, Movement right)
+        public static bool operator ==(MovementInfo left, MovementInfo right)
         {
             return left.Equals(right);
         }
-        public static bool operator !=(Movement left, Movement right)
+        public static bool operator !=(MovementInfo left, MovementInfo right)
         {
             return !(left == right);
         }
