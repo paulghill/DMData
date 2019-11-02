@@ -54,4 +54,61 @@
         L29,
         L30
     }
+    public enum TerrainType
+    {
+        Normal,
+        Difficult,
+    }
+    public enum SizeCategoryType
+    {
+        Tiny,
+        Small,
+        Medium,
+        Large,
+        Huge,
+        Gargantuan,
+    }
+    public enum AlignmentType
+    {
+        LawfulGood,
+        LawfulEvil,
+        LawfulNeutral,
+        NeutralGood,
+        Neutral,
+        NeutralEvil,
+        ChaoticGood,
+        ChaoticNeutral,
+        ChaoticEvil,
+        Unaligned,
+    }
+    public enum LanguageType
+    {
+        Common,
+        Dwarvish,
+        Elvish,
+        Giant,
+        Gnomish,
+        Goblin,
+        Halfling,
+        Orc,
+        Abyssal,
+        Celestial,
+        DeepSpeech,
+        Infernal,
+        Primordial,
+        Sylvan,
+        Undercommon
+    }
+    public enum LangauageCategoryType
+    {
+        Standard,
+        ShatteredWorlds,
+    }
+    public enum SenseType
+    {
+        Blindsight,
+        Darkvision,
+        Termorsense,
+        Truesight,
+    }
 }

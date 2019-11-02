@@ -133,6 +133,124 @@ namespace DMData.Stats
         }
     }
 
+    public struct AlignmentInfo : IEquatable<AlignmentInfo>
+    {
+        static IReadOnlyList<AlignmentInfo> AlignmentList = new List<AlignmentInfo>() 
+        {
+            new AlignmentInfo(AlignmentType.ChaoticEvil, "Chaotic Evil"),
+            new AlignmentInfo(AlignmentType.ChaoticGood,"Chaotic Good"),
+            new AlignmentInfo(AlignmentType.ChaoticNeutral, "Chaotic Neutral"),
+            new AlignmentInfo(AlignmentType.LawfulEvil, "Lawful Evil"),
+            new AlignmentInfo(AlignmentType.LawfulGood,"Lawful Good"),
+            new AlignmentInfo(AlignmentType.LawfulNeutral,"Lawful Neutral"),
+            new AlignmentInfo(AlignmentType.Neutral,"Neutral"),
+            new AlignmentInfo(AlignmentType.NeutralEvil, "Neutral Evil"),
+            new AlignmentInfo(AlignmentType.NeutralGood, "Neutral Good"),
+            new AlignmentInfo(AlignmentType.Unaligned, "Unaligned"),
+        };
+
+        public AlignmentType Type { get; private set; }
+        public string DisplayName { get; private set; }
+
+        public AlignmentInfo(AlignmentType type, string displayName)
+        {
+            this.Type = type;
+            this.DisplayName = displayName;
+        }
+
+        public static AlignmentInfo GetAlignment(AlignmentType type)
+        {
+            return AlignmentList.Where(a => a.Type == type).First();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
+            else { return this.Equals((AlignmentInfo)obj); }
+        }
+        public bool Equals(AlignmentInfo other)
+        {
+            return this.DisplayName == other.DisplayName && this.Type == this.Type;
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(this.DisplayName, this.Type).GetHashCode();
+        }
+
+        public static bool operator ==(AlignmentInfo left, AlignmentInfo right)
+        {
+            return left.Equals(right);
+        }
+        public static bool operator !=(AlignmentInfo left, AlignmentInfo right)
+        {
+            return !(left == right);
+        }
+    }
+
+    public struct LangaugeInfo : IEquatable<LangaugeInfo>
+    {
+        static IReadOnlyList<LangaugeInfo> LanguageList = new List<LangaugeInfo>() 
+        { 
+            new LangaugeInfo(LanguageType.Abyssal, LangauageCategoryType.Standard, "Abyssal"),
+            new LangaugeInfo(LanguageType.Celestial, LangauageCategoryType.Standard, "Celestial"),
+            new LangaugeInfo(LanguageType.Common, LangauageCategoryType.Standard, "Common"),
+            new LangaugeInfo(LanguageType.DeepSpeech, LangauageCategoryType.Standard, "Deep Speech"),
+            new LangaugeInfo(LanguageType.Dwarvish, LangauageCategoryType.Standard, "Dwarvish"),
+            new LangaugeInfo(LanguageType.Elvish, LangauageCategoryType.Standard, "Elvish"),
+            new LangaugeInfo(LanguageType.Giant, LangauageCategoryType.Standard, "Giant"),
+            new LangaugeInfo(LanguageType.Gnomish, LangauageCategoryType.Standard, "Gnomish"),
+            new LangaugeInfo(LanguageType.Goblin, LangauageCategoryType.Standard, "Goblin"),
+            new LangaugeInfo(LanguageType.Halfling, LangauageCategoryType.Standard, "Halfling"),
+            new LangaugeInfo(LanguageType.Infernal, LangauageCategoryType.Standard, "Infernal"),
+            new LangaugeInfo(LanguageType.Orc, LangauageCategoryType.Standard, "Orc"),
+            new LangaugeInfo(LanguageType.Primordial, LangauageCategoryType.Standard, "Primordial"),
+            new LangaugeInfo(LanguageType.Sylvan, LangauageCategoryType.Standard, "Sylvan"),
+            new LangaugeInfo(LanguageType.Undercommon, LangauageCategoryType.Standard, "Undercommon"),
+        };
+
+        public LanguageType Language { get; private set; }
+        public LangauageCategoryType Category { get; private set; }
+        public string DisplayName { get; private set; }
+
+        public LangaugeInfo(LanguageType type, LangauageCategoryType category, string displayName)
+        {
+            this.Language = type;
+            this.Category = category;
+            this.DisplayName = displayName;
+        }
+
+        public static LangaugeInfo GetStandardLanguage(LanguageType language)
+        {
+            return LanguageList.Where(a => a.Category == LangauageCategoryType.Standard)
+                .Where(b => b.Language == language).First();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
+            else { return this.Equals((LangaugeInfo)obj); }
+        }
+        public bool Equals(LangaugeInfo other)
+        {
+            return this.DisplayName == other.DisplayName && this.Language == other.Language;
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(this.DisplayName, this.Language).GetHashCode();
+        }
+
+        public static bool operator ==(LangaugeInfo left, LangaugeInfo right)
+        {
+            return left.Equals(right);
+        }
+        public static bool operator !=(LangaugeInfo left, LangaugeInfo right)
+        {
+            return !(left == right);
+        }
+    }
+
     public struct LevelInfo : IEquatable<LevelInfo>
     {
         public static IReadOnlyList<LevelInfo> LevelInfoList => new List<LevelInfo>()
@@ -294,6 +412,22 @@ namespace DMData.Stats
             return output.ToString();
         }
 
+        public int GetDifficultTerrain()
+        {
+            double output = this.Speed / 2;
+            return (int)Math.Round(output, 0, MidpointRounding.ToEven);
+        }
+        public int GetSwimmingClimbingCrawling(TerrainType terrain)
+        {
+            int difficultyMultiplier = 0;
+
+            if (terrain == TerrainType.Normal) { difficultyMultiplier = 2; }
+            else { difficultyMultiplier = 3; }
+
+            double output = this.Speed / difficultyMultiplier;
+            return (int)Math.Round(output, 0, MidpointRounding.ToEven);
+        }
+
         public override bool Equals(object obj)
         {
             if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
@@ -354,6 +488,56 @@ namespace DMData.Stats
             return left.Equals(right);
         }
         public static bool operator !=(SavingThrowModifier left, SavingThrowModifier right)
+        {
+            return !(left == right);
+        }
+    }
+
+    public struct SenseInfo : IEquatable<SenseInfo>
+    {
+        public SenseType Sense { get; private set; }
+        public int Range { get; private set; }
+        public bool HasNotes { get; private set; }
+        public string Notes { get; private set; }
+
+        public SenseInfo(SenseType sense, int range, string notes)
+        {
+            this.Sense = sense;
+            this.Range = range;
+            this.HasNotes = true;
+            this.Notes = notes;
+        }
+        public SenseInfo(SenseType sense, int range)
+        {
+            this.Sense = sense;
+            this.Range = range;
+            this.HasNotes = false;
+            this.Notes = "";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
+            { return this.Equals((SenseInfo)obj); }
+        }
+        public bool Equals(SenseInfo other)
+        {
+            return this.Range == other.Range &&
+                this.Sense == other.Sense &&
+                this.Notes == other.Notes &&
+                this.HasNotes == other.HasNotes;
+        }
+
+        public override int GetHashCode()
+        {
+            return Tuple.Create(this.Range, this.Sense, this.HasNotes, this.Notes).GetHashCode();
+        }
+
+        public static bool operator ==(SenseInfo left, SenseInfo right)
+        {
+            return left.Equals(right);
+        }
+        public static bool operator !=(SenseInfo left, SenseInfo right)
         {
             return !(left == right);
         }

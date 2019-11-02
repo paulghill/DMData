@@ -6,5 +6,14 @@ using System.Threading.Tasks;
 
 namespace DMData.Stats
 {
+    public interface IRace
+    {
+        IReadOnlyList<Movement> MovementList { get; }
+        IReadOnlyList<LangaugeInfo> LanguageList { get; }
+        IReadOnlyList<AbilityAdjustment> AbilityAdjustmentList { get; }
 
+        int AgeMax { get; }
+        int AgeMin { get; }
+        SizeCategoryType SizeCategory { get; }
+    }
 }
