@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace DMData.Stats
 {
-    public interface IRace
+    public interface ISubRace
     {
-        IReadOnlyList<MovementInfo> MovementList { get; }
+        string Name { get; }
         IReadOnlyList<LangaugeInfo> LanguageList { get; }
         IReadOnlyList<AbilityAdjustment> AbilityAdjustmentList { get; }
-
+    }
+    public interface IRace : ISubRace
+    {
         int AgeMax { get; }
         int AgeMin { get; }
         SizeCategoryType SizeCategory { get; }
+
+        IReadOnlyList<MovementInfo> MovementList { get; }
+        IReadOnlyList<ISubRace> Subraces { get; }
     }
 }

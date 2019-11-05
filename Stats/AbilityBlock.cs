@@ -66,7 +66,7 @@ namespace DMData.Stats
         }
         public int GetAdjustedModifier(AbilityCategoryType category)
         {
-            return AbilityScore.Get(this.GetAdjustedScore(category));
+            return AbilityScoreInfo.Get(this.GetAdjustedScore(category));
         }
         public int GetAdjustedSavingThrow(AbilityCategoryType category, LevelType level)
         {
@@ -89,7 +89,7 @@ namespace DMData.Stats
                 {
                     var tempScore = this.GetAdjustedScore(adjustment.Category);
                     tempScore += adjustment.Modifier;
-                    if (AbilityScore.IsValidScore(tempScore)) { this.adjustmentList.Add(adjustment); }
+                    if (AbilityScoreInfo.IsValidScore(tempScore)) { this.adjustmentList.Add(adjustment); }
                 }
             }
         }

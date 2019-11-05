@@ -5,46 +5,46 @@ using System.Text;
 
 namespace DMData.Stats
 {
-    public struct AbilityScore : IEquatable<AbilityScore>
+    public struct AbilityScoreInfo : IEquatable<AbilityScoreInfo>
     {
-        public static IReadOnlyList<AbilityScore> ModifierList => new List<AbilityScore>()
+        public static IReadOnlyList<AbilityScoreInfo> ModifierList => new List<AbilityScoreInfo>()
         {
-            new AbilityScore(1,-5),
-            new AbilityScore(2,-4),
-            new AbilityScore(3,-4),
-            new AbilityScore(4,-3),
-            new AbilityScore(5,-3),
-            new AbilityScore(6,-2),
-            new AbilityScore(7,-2),
-            new AbilityScore(8,-1),
-            new AbilityScore(9,-1),
-            new AbilityScore(10,0),
-            new AbilityScore(11,0),
-            new AbilityScore(12,1),
-            new AbilityScore(13,1),
-            new AbilityScore(14,2),
-            new AbilityScore(15,2),
-            new AbilityScore(16,3),
-            new AbilityScore(17,3),
-            new AbilityScore(18,4),
-            new AbilityScore(19,4),
-            new AbilityScore(20,5),
-            new AbilityScore(21,5),
-            new AbilityScore(22,6),
-            new AbilityScore(23,6),
-            new AbilityScore(24,7),
-            new AbilityScore(25,7),
-            new AbilityScore(26,8),
-            new AbilityScore(27,8),
-            new AbilityScore(28,9),
-            new AbilityScore(29,9),
-            new AbilityScore(30,10),
+            new AbilityScoreInfo(1,-5),
+            new AbilityScoreInfo(2,-4),
+            new AbilityScoreInfo(3,-4),
+            new AbilityScoreInfo(4,-3),
+            new AbilityScoreInfo(5,-3),
+            new AbilityScoreInfo(6,-2),
+            new AbilityScoreInfo(7,-2),
+            new AbilityScoreInfo(8,-1),
+            new AbilityScoreInfo(9,-1),
+            new AbilityScoreInfo(10,0),
+            new AbilityScoreInfo(11,0),
+            new AbilityScoreInfo(12,1),
+            new AbilityScoreInfo(13,1),
+            new AbilityScoreInfo(14,2),
+            new AbilityScoreInfo(15,2),
+            new AbilityScoreInfo(16,3),
+            new AbilityScoreInfo(17,3),
+            new AbilityScoreInfo(18,4),
+            new AbilityScoreInfo(19,4),
+            new AbilityScoreInfo(20,5),
+            new AbilityScoreInfo(21,5),
+            new AbilityScoreInfo(22,6),
+            new AbilityScoreInfo(23,6),
+            new AbilityScoreInfo(24,7),
+            new AbilityScoreInfo(25,7),
+            new AbilityScoreInfo(26,8),
+            new AbilityScoreInfo(27,8),
+            new AbilityScoreInfo(28,9),
+            new AbilityScoreInfo(29,9),
+            new AbilityScoreInfo(30,10),
         };
 
         public int Score { get; private set; }
         public int Modifier { get; private set; }
 
-        public AbilityScore(int score, int modifier)
+        public AbilityScoreInfo(int score, int modifier)
         {
             this.Score = score;
             this.Modifier = modifier;
@@ -65,16 +65,16 @@ namespace DMData.Stats
 
         public static bool IsValidScore(int score)
         {
-            if (score >= AbilityScore.GetScoreHigh() && score <= AbilityScore.GetScoreHigh()) { return true; }
+            if (score >= AbilityScoreInfo.GetScoreHigh() && score <= AbilityScoreInfo.GetScoreHigh()) { return true; }
             else { return false; }
         }
 
         public override bool Equals(object obj)
         {
             if ((obj == null) || !this.GetType().Equals(obj.GetType())) { return false; }
-            else { return this.Equals((AbilityScore)obj); }
+            else { return this.Equals((AbilityScoreInfo)obj); }
         }
-        public bool Equals(AbilityScore other)
+        public bool Equals(AbilityScoreInfo other)
         {
             return (this.Score == other.Score) && (this.Modifier == other.Modifier);
         }
@@ -84,11 +84,11 @@ namespace DMData.Stats
             return Tuple.Create(this.Score, this.Modifier).GetHashCode();
         }
 
-        public static bool operator ==(AbilityScore left, AbilityScore right)
+        public static bool operator ==(AbilityScoreInfo left, AbilityScoreInfo right)
         {
             return left.Equals(right);
         }
-        public static bool operator !=(AbilityScore left, AbilityScore right)
+        public static bool operator !=(AbilityScoreInfo left, AbilityScoreInfo right)
         {
             return !(left == right);
         }
@@ -193,20 +193,27 @@ namespace DMData.Stats
         static IReadOnlyList<LangaugeInfo> LanguageList = new List<LangaugeInfo>() 
         { 
             new LangaugeInfo(LanguageType.Abyssal, LangauageCategoryType.Standard, "Abyssal"),
+            new LangaugeInfo(LanguageType.Aquan, LangauageCategoryType.Standard, "Aquan"),
+            new LangaugeInfo(LanguageType.Auran, LangauageCategoryType.Standard, "Auran"),
             new LangaugeInfo(LanguageType.Celestial, LangauageCategoryType.Standard, "Celestial"),
             new LangaugeInfo(LanguageType.Common, LangauageCategoryType.Standard, "Common"),
             new LangaugeInfo(LanguageType.DeepSpeech, LangauageCategoryType.Standard, "Deep Speech"),
+            new LangaugeInfo(LanguageType.Draconic, LangauageCategoryType.Standard, "Draconic"),
+            new LangaugeInfo(LanguageType.Druidic, LangauageCategoryType.Standard, "Druidic"),
             new LangaugeInfo(LanguageType.Dwarvish, LangauageCategoryType.Standard, "Dwarvish"),
             new LangaugeInfo(LanguageType.Elvish, LangauageCategoryType.Standard, "Elvish"),
             new LangaugeInfo(LanguageType.Giant, LangauageCategoryType.Standard, "Giant"),
             new LangaugeInfo(LanguageType.Gnomish, LangauageCategoryType.Standard, "Gnomish"),
             new LangaugeInfo(LanguageType.Goblin, LangauageCategoryType.Standard, "Goblin"),
             new LangaugeInfo(LanguageType.Halfling, LangauageCategoryType.Standard, "Halfling"),
+            new LangaugeInfo(LanguageType.Igan, LangauageCategoryType.Standard, "Igan"),
             new LangaugeInfo(LanguageType.Infernal, LangauageCategoryType.Standard, "Infernal"),
             new LangaugeInfo(LanguageType.Orc, LangauageCategoryType.Standard, "Orc"),
             new LangaugeInfo(LanguageType.Primordial, LangauageCategoryType.Standard, "Primordial"),
             new LangaugeInfo(LanguageType.Sylvan, LangauageCategoryType.Standard, "Sylvan"),
+            new LangaugeInfo(LanguageType.Terran, LangauageCategoryType.Standard, "Terran"),
             new LangaugeInfo(LanguageType.Undercommon, LangauageCategoryType.Standard, "Undercommon"),
+            
         };
 
         public LanguageType Language { get; private set; }

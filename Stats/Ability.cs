@@ -17,7 +17,7 @@
 
         public bool SetBaseScore(int score)
         {
-            if (AbilityScore.IsValidScore(score))
+            if (AbilityScoreInfo.IsValidScore(score))
             {
                 this.BaseScore = score;
                 return true;

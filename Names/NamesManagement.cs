@@ -6,11 +6,11 @@ namespace DMData.Names
 {
     public static class NamesManagement
     {
-        public static IReadOnlyList<Name> NameData => DataNames.Names;
+        public static IReadOnlyList<CategoryNames> NameData => DataNames.Names;
         public static IReadOnlyList<NameCategoryType> NameCategories => Enum.GetValues(typeof(NameCategoryType)).Cast<NameCategoryType>().ToList();
         public static IReadOnlyList<NameGenderType> Genders => new List<NameGenderType>() { NameGenderType.Female, NameGenderType.Male };
         
-        public static IReadOnlyList<MilitaryBranch> MilitaryData => DataMilitaryRank.GetMilitaryBranchData();
+        public static IReadOnlyList<MilitaryBranch> MilitaryData => DataMilitary.GetMilitaryBranchData();
         public static IReadOnlyList<MilitaryBranchType> MilitaryBranches => Enum.GetValues(typeof(MilitaryBranchType))
             .Cast<MilitaryBranchType>().ToList();
         public static IReadOnlyList<MilitaryCategoryType> MilitaryCategories => Enum.GetValues(typeof(MilitaryCategoryType))

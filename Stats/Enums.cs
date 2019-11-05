@@ -97,7 +97,13 @@
         Infernal,
         Primordial,
         Sylvan,
-        Undercommon
+        Undercommon,
+        Aquan,
+        Druidic,
+        Igan,
+        Terran,
+        Auran,
+        Draconic
     }
     public enum LangauageCategoryType
     {
@@ -111,4 +117,13 @@
         Termorsense,
         Truesight,
     }
+    public enum ProficiencyArmorType
+    {
+        None,
+        Shield,
+        Light,
+        Medium,
+        Heavy
+    }
+
 }

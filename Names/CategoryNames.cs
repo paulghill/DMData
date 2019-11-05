@@ -2,7 +2,7 @@
 
 namespace DMData.Names
 {
-    public sealed class Name
+    public sealed class CategoryNames
     {
         public NameCategoryType Category { get; private set; }
         public bool HasSurnames { get; private set; }
@@ -10,14 +10,14 @@ namespace DMData.Names
         public IReadOnlyList<string> MaleNames { get; private set; }
         public IReadOnlyList<string> Surnames { get; private set; }
 
-        public Name(NameCategoryType categoryType, IReadOnlyList<string> femaleNames, IReadOnlyList<string> maleNames)
+        public CategoryNames(NameCategoryType categoryType, IReadOnlyList<string> femaleNames, IReadOnlyList<string> maleNames)
         {
             this.Category = categoryType;
             this.HasSurnames = false;
             this.FemaleNames = femaleNames;
             this.MaleNames = maleNames;
         }
-        public Name(NameCategoryType categoryType, IReadOnlyList<string> femaleNames, IReadOnlyList<string> maleNames, IReadOnlyList<string> surnames)
+        public CategoryNames(NameCategoryType categoryType, IReadOnlyList<string> femaleNames, IReadOnlyList<string> maleNames, IReadOnlyList<string> surnames)
         {
             this.Category = categoryType;
             this.HasSurnames = true;

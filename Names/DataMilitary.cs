@@ -2,7 +2,7 @@
 
 namespace DMData.Names
 {
-    static class DataMilitaryRank
+    static class DataMilitary
     {
         public static IReadOnlyList<MilitaryBranch> GetMilitaryBranchData()
         {
