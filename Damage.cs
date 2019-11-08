@@ -10,9 +10,9 @@ namespace DMData
     {
         public DieType Die { get; private set; }
         public int NumberOfDice { get; private set; }
-        public DamageCategoryType DamageCategory { get; private set; }
+        public DamageType DamageCategory { get; private set; }
 
-        public Damage(DieType die, int number, DamageCategoryType type)
+        public Damage(DieType die, int number, DamageType type)
         {
             this.Die = die;
             this.NumberOfDice = number;

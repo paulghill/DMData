@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace DMData.Stats
+namespace DMData.Abilities
 {
     public sealed class AbilityBlock
     {
-        private List<AbilityAdjustment> adjustmentList = new List<AbilityAdjustment>();
-        public IReadOnlyList<AbilityAdjustment> AdjustmentList => this.adjustmentList;
+        private readonly List<AbilityModifier> adjustmentList = new List<AbilityModifier>();
+        public IReadOnlyList<AbilityModifier> AdjustmentList => this.adjustmentList;
 
-        private List<AbilityCategoryType> savingThrowProficiencies = new List<AbilityCategoryType>();
+        private readonly List<AbilityCategoryType> savingThrowProficiencies = new List<AbilityCategoryType>();
         public IReadOnlyList<AbilityCategoryType> SavingThrowProficiencies => this.savingThrowProficiencies;
 
         public Ability Strength { get; private set; }
@@ -55,9 +56,9 @@ namespace DMData.Stats
             var output = ability.BaseScore;
             if (this.adjustmentList.Any(a => a.Category == category))
             {
-                foreach (AbilityAdjustment adjustment in this.adjustmentList.Where(a => a.Category == category))
+                foreach (AbilityModifier adjustment in this.adjustmentList.Where(a => a.Category == category))
                 {
-                    output += adjustment.Modifier;
+                    output += adjustment.Adjustment;
                 }
 
                 return output;
@@ -66,30 +67,42 @@ namespace DMData.Stats
         }
         public int GetAdjustedModifier(AbilityCategoryType category)
         {
-            return AbilityScoreInfo.Get(this.GetAdjustedScore(category));
+            return Info.GetAbilityModifier(this.GetAdjustedScore(category));
         }
-        public int GetAdjustedSavingThrow(AbilityCategoryType category, LevelType level)
+        public int GetAdjustedSavingThrow(AbilityCategoryType category, double level)
         {
             var output = this.GetAdjustedModifier(category);
             
             if (this.savingThrowProficiencies.Any(a => a == category))
             {
-                output += LevelInfo.Get(level).ProficiencyBonus;
+                output += Info.GetLevel(level).ProficiencyBonus;
             }
 
             return output;
         }
 
+        public int LongJump() { return this.GetAdjustedScore(AbilityCategoryType.Strength); }
+        public int LongJumpStanding()
+        {
+            double output = this.LongJump() / 2;
+            return (int)Math.Round(output, 0, MidpointRounding.ToEven);
+        }
+        public int HighJump() { return 3 + this.GetAdjustedModifier(AbilityCategoryType.Strength); }
+        public int HighJumpStanding()
+        {
+            double output = this.HighJump() / 2;
+            return (int)Math.Round(output, 0, MidpointRounding.ToEven);
+        }
 
-        public void AddAdjustment(AbilityAdjustment adjustment)
+        public void AddAdjustment(AbilityModifier adjustment)
         {
             if (adjustment != null)
             {
                 if (this.adjustmentList.Any(a => a != adjustment))
                 {
                     var tempScore = this.GetAdjustedScore(adjustment.Category);
-                    tempScore += adjustment.Modifier;
-                    if (AbilityScoreInfo.IsValidScore(tempScore)) { this.adjustmentList.Add(adjustment); }
+                    tempScore += adjustment.Adjustment;
+                    if (Info.ValidateAbilityScore(tempScore)) { this.adjustmentList.Add(adjustment); }
                 }
             }
         }

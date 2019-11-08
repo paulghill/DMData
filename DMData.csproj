@@ -121,22 +121,42 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Abilities\AbilityModifier.cs" />
+    <Compile Include="Abilities\AbilityCategoryType.cs" />
+    <Compile Include="Abilities\SavingThrowModifier.cs" />
+    <Compile Include="AlignmentType.cs" />
+    <Compile Include="CampaignType.cs" />
     <Compile Include="Damage.cs" />
+    <Compile Include="DamageType.cs" />
+    <Compile Include="DieType.cs" />
     <Compile Include="Items\IItem.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\Weapons\Ammunition.cs" />
-    <Compile Include="Items\Weapons\Enums.cs" />
+    <Compile Include="Items\Weapons\WeaponCategoryType.cs" />
+    <Compile Include="Items\Weapons\AmunitionType.cs" />
     <Compile Include="Items\Weapons\IAmmunition.cs" />
     <Compile Include="Items\Weapons\IWeapon.cs" />
+    <Compile Include="Items\Weapons\WeaponInfo.cs" />
+    <Compile Include="Items\Weapons\WeaponProficiencyGroupType.cs" />
+    <Compile Include="Items\Weapons\WeaponProficiencyType.cs" />
     <Compile Include="Items\Weapons\Range.cs" />
     <Compile Include="Items\Weapons\RangeProperties.cs" />
     <Compile Include="Items\Weapons\Weapon.cs" />
-    <Compile Include="Enums.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="SenseType.cs" />
     <Compile Include="CLS-Compliance.cs" />
+    <Compile Include="LanguageType.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Names\MilitaryBranch.cs" />
     <Compile Include="Names\CategoryNames.cs" />
+    <Compile Include="Names\MilitaryBranchType.cs" />
+    <Compile Include="Names\MilitaryCategoryType.cs" />
+    <Compile Include="Names\MilitaryGradeType.cs" />
     <Compile Include="Names\MilitaryRank.cs" />
+    <Compile Include="Names\NameCategoryType.cs" />
+    <Compile Include="Names\NameGenderType.cs" />
     <Compile Include="Names\Nobility.cs" />
+    <Compile Include="Names\NobilityCategoryType.cs" />
     <Compile Include="Names\RandomName.cs" />
     <Compile Include="Names\DataNames\DataNamesChinese.cs" />
     <Compile Include="Names\DataNames\DataNamesCzechcs.cs" />
@@ -175,7 +195,7 @@
     <Compile Include="Names\DataMilitary.cs" />
     <Compile Include="Names\DataDecriptor.cs" />
     <Compile Include="Names\DataNames\DataNames.cs" />
-    <Compile Include="Names\Enums.cs" />
+    <Compile Include="Names\TitleCategoryType.cs" />
     <Compile Include="Names\DataNames\DataNamesArabic.cs" />
     <Compile Include="Names\DataNames\DataNamesJapanese.cs" />
     <Compile Include="Names\DataNames\DataNamesKorean.cs" />
@@ -183,12 +203,19 @@
     <Compile Include="Names\Title.cs" />
     <Compile Include="Names\TitleGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stats\Ability.cs" />
-    <Compile Include="Stats\AbilityBlock.cs" />
+    <Compile Include="Abilities\Ability.cs" />
+    <Compile Include="Abilities\AbilityBlock.cs" />
+    <Compile Include="Sense.cs" />
+    <Compile Include="Items\Armor\ArmorProficiencyType.cs" />
+    <Compile Include="Movement\MovementModifier.cs" />
+    <Compile Include="Movement\MovementType.cs" />
+    <Compile Include="Stats\ISubRace.cs" />
     <Compile Include="Stats\StatBlock.cs" />
-    <Compile Include="Stats\Structs.cs" />
-    <Compile Include="Stats\Interfaces.cs" />
-    <Compile Include="Stats\Enums.cs" />
+    <Compile Include="Movement\MovementInfo.cs" />
+    <Compile Include="Stats\IRace.cs" />
+    <Compile Include="SizeCategoryType.cs" />
+    <Compile Include="TerrainType.cs" />
+    <Compile Include="Info.cs" />
     <EmbeddedResource Include="Properties\DMData.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +236,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

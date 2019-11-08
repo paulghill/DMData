@@ -1,4 +1,4 @@
-﻿namespace DMData.Stats
+﻿namespace DMData.Abilities
 {
     public sealed class Ability
     {
@@ -17,12 +17,11 @@
 
         public bool SetBaseScore(int score)
         {
-            if (AbilityScoreInfo.IsValidScore(score))
-            {
-                this.BaseScore = score;
-                return true;
-            }
-            else { return false; }
+            var output = Info.ValidateAbilityScore(score);
+
+            if (output) { this.BaseScore = score; }
+
+            return output;
         }
     }
 }

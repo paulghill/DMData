@@ -1,13 +1,5 @@
 ﻿namespace DMData
 {
-    public enum DamageCategoryType
-    {
-        Piercing,
-        Slashing,
-        Bludgeoning,
-        Necrotic,
-        Radiant
-    }
     public enum DieType
     {
         d0,

@@ -1,0 +1,31 @@
+﻿namespace DMData.Names
+{
+    public enum MilitaryGradeType
+    {
+        E1,
+        E2,
+        E3,
+        E4,
+        E5,
+        E6,
+        E7,
+        E8,
+        E9,
+        O1,
+        O10,
+        O2,
+        O3,
+        O4,
+        O5,
+        O6,
+        O7,
+        O8,
+        O9,
+        U,
+        W1,
+        W2,
+        W3,
+        W4,
+        W5,
+    }
+}

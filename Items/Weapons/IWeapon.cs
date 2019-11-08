@@ -2,8 +2,9 @@
 {
     public interface IWeapon : IItem
     {
-        ProficiencyGroupType ProficiencyGroup { get; }
-        CategoryType Category { get; }
+        WeaponProficiencyGroupType ProficiencyGroup { get; }
+        WeaponProficiencyType Proficiency { get; }
+        WeaponCategoryType Category { get; }
         Damage Damage { get; }
 
         bool IsVersatile { get; set; }
